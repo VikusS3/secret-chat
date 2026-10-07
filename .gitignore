@@ -1,0 +1,25 @@
+# Dependencias y builds
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Errores y registro
+npm-debug.log*
+*.log
+
+# Entorno
+.env
+.env.*
+!.env.example
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Capacitor (generado en fase APK)
+client/android/
+client/ios/

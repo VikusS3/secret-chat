@@ -1,0 +1,33 @@
+{
+  "name": "secret-chat",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "predev": "npm run build --workspace @secret-chat/shared",
+    "dev": "concurrently -n shared,server,client -c gray,blue,green \"npm run dev --workspace @secret-chat/shared\" \"npm run dev --workspace @secret-chat/server\" \"npm run dev --workspace @secret-chat/client\"",
+    "build": "npm run build --workspace @secret-chat/shared && npm run build --workspace @secret-chat/server && npm run build --workspace @secret-chat/client",
+    "pretypecheck": "npm run build --workspace @secret-chat/shared",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "oxlint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "pretest": "npm run build --workspace @secret-chat/shared",
+    "test": "npm run test --workspaces --if-present",
+    "start": "npm run start --workspace @secret-chat/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "oxlint": "^1.81.0",
+    "prettier": "^3.6.2",
+    "typescript": "~6.0.2"
+  }
+}
