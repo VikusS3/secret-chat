@@ -48,7 +48,7 @@ Orden de verificación antes de dar por terminado un cambio: **`typecheck -> lin
 - **Sin base de datos**: estado solo en memoria del servidor. No introducir persistencia.
 - **Sin registro de usuarios**: anónimo, salas de 2 participantes por enlace.
 - Backend es la fuente de verdad de la autodestrucción: el cliente solo pinta el temporizador; el servidor dispara `message:destroy`. El texto en claro no viaja al receptor hasta `message:reveal`.
-- Deploy en la nube (Fase 4): **Render** con `render.yaml` (Blueprint). En producción (`NODE_ENV=production`) Express sirve `client/dist` con fallback SPA (mismo origen, sin CORS); el cliente usa la URL del servidor vía proxy/origen — nunca URLs absolutas a localhost.
+- Deploy en la nube (Fase 4): **Render** con `render.yaml` (Blueprint). En producción (`NODE_ENV=production`) Express sirve `client/dist` con fallback SPA (mismo origen, sin CORS); el cliente usa la URL del servidor vía proxy/origen — nunca URLs absolutas a localhost. **Gotcha Render**: su `buildCommand` DEBE ser `npm ci --include=dev && npm run build` — Render fija `NODE_ENV=production` también en build y npm omite `devDependencies` (sin `tsc` ni `@types/*` el build revienta con TS7016).
 
 ## Pendiente (roadmap)
 
