@@ -3,6 +3,7 @@
 ## 1. REST API Endpoints (Express)
 Dado que la comunicación se basa en WebSockets, los endpoints HTTP serán mínimos:
 - `GET /api/health` - Verifica el estado del servidor.
+- `GET /api/ping` - Devuelve `true`. Endpoint barato para keep-alive periódico (evita que el host en plan gratuito se duerma).
 
 ## 2. Eventos de Socket.IO
 

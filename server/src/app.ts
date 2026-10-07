@@ -9,6 +9,10 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' })
 })
 
+app.get('/api/ping', (_req, res) => {
+  res.json(true)
+})
+
 // En producción Express sirve el build del cliente (mismo origen, sin CORS).
 // Rutas resueltas con respecto a este módulo: funciona con cwd en server/.
 const clientDist = fileURLToPath(new URL('../../client/dist', import.meta.url))

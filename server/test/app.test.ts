@@ -3,7 +3,7 @@ import type { Server } from 'node:http'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { app } from '../src/app.js'
 
-describe('GET /api/health', () => {
+describe('API', () => {
   let server: Server
   let baseUrl: string
 
@@ -21,9 +21,16 @@ describe('GET /api/health', () => {
     })
   })
 
-  it('responde con estado ok', async () => {
+  it('GET /api/health responde con estado ok', async () => {
     const res = await fetch(`${baseUrl}/api/health`)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ status: 'ok' })
+  })
+
+  it('GET /api/ping responde true', async () => {
+    const res = await fetch(`${baseUrl}/api/ping`)
+    expect(res.status).toBe(200)
+    expect(res.headers.get('content-type')).toContain('application/json')
+    expect(await res.json()).toBe(true)
   })
 })
